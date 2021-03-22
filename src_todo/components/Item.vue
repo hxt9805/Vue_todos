@@ -9,12 +9,12 @@
 </template>
 
 <script type="text/ecmascript-6">
+import PubSub from 'pubsub-js'
   export default {
     props:{ // 声明属性名和属性值的类型
       todo: Object,
-      deleteTodo: Function,
+      
       index: Number,
-      updateTodo: Function,
     },
     data(){
       return {
@@ -29,7 +29,8 @@
       },
       deleteItem(){
         if (confirm('确定删除吗?')) {
-          this.deleteTodo(this.index)
+          // this.deleteTodo(this.index)
+          this.$globalEventBus.$emit('deleteTodo',this.index)
         }
       }
     },
@@ -39,7 +40,8 @@
           return this.todo.completed
         },
         set(value){
-          this.updateTodo(this.todo, value)
+          // this.updateTodo(this.todo, value)
+          PubSub.publish('updateTodo',{todo:this.todo,isCheck:value})
         }
       }
     }

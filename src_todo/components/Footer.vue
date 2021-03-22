@@ -1,38 +1,40 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" v-model="isCheckAll"/>
+      <!-- <input type="checkbox" v-model="isCheckAll"/> -->
+      <slot name="left" ></slot>
     </label>
-    <span>
+    <!-- <span>
       <span>已完成 {{completeSize}} </span> / 全部{{todos.length}}
-    </span>
-    <button class="btn btn-danger" v-show="completeSize>0" @click="clearCompletedTodos" >清除已完成任务</button>
+    </span> -->
+    <slot name="middle"></slot>
+    <!-- <button class="btn btn-danger" v-show="completeSize>0" @click="clearCompletedTodos" >清除已完成任务</button> -->
+    <slot name="right">aaa</slot>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   export default {
-    props:{
-      todos: Array,
-      clearCompletedTodos: Function,
-      checkAll: Function,
-    },
-    computed:{
-      completeSize () {
-        return this.todos.reduce((preTotal,todo)=> preTotal + (todo.completed ? 1 : 0), 0)
-        // return this.todos.filter(todo=>todo.completed).length
-      },
-      isCheckAll:{
-        get(){
+    // props:{
+    //   todos: Array,
+    //   clearCompletedTodos: Function,
+    //   checkAll: Function,
+    // },
+    // computed:{
+    //   completeSize () {
+    //     return this.todos.reduce((preTotal,todo)=> preTotal + (todo.completed ? 1 : 0), 0)
+    //     // return this.todos.filter(todo=>todo.completed).length
+    //   },
+    //   isCheckAll:{
+    //     get(){
           
-          return this.todos.length === this.completeSize && this.completeSize>0 ? true : false
-        },
-        set(value){ //当前勾选状态的Boolean值
-          this.checkAll(value)
-        }
-      }
-      
-    }
+    //       return this.todos.length === this.completeSize && this.completeSize>0 ? true : false
+    //     },
+    //     set(value){ //当前勾选状态的Boolean值
+    //       this.checkAll(value)
+    //     }
+    //   }
+    // }
   }
 </script>
 

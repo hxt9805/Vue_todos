@@ -4,9 +4,9 @@
     v-for="(todo,index) in todos" 
     :key="todo.id" 
     :todo="todo" 
-    :deleteTodo="deleteTodo" 
+    
     :index="index" 
-    :updateTodo="updateTodo"
+    
   />
   </ul>
 </template>
@@ -18,7 +18,7 @@ import Item from './Item'
       Item
     },
     //声明接收属性: 属性名   ====>  组件对象多了一个属性-todos
-    props:['todos','deleteTodo','updateTodo'],
+    props:['todos'],
   }
 </script>
 
